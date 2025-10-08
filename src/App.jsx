@@ -2,6 +2,27 @@ import React, { useState } from "react";
 import "./App.css";
 import BurgerBuilder from "./BurgerBuilder";
 import MixMeal from "./MixMeal";
+import { useEffect } from "react";
+
+const ING_IMAGES = [
+  "/burger/bun-bottom.png",
+  "/burger/patty.png",
+  "/burger/cheese.png",
+  "/burger/lettuce.png",
+  "/burger/tomato.png",
+  "/burger/onion.png",
+  "/burger/bun-top.png",
+];
+
+function preloadImages(list) {
+  for (const src of list) {
+    const img = new Image();
+    img.src = src;
+    // Optional: ensure decode completes (supported on modern browsers)
+    img.decode?.().catch(() => {});
+  }
+}
+
 
 // Use Netlify build-time env in production, localhost in dev
 const API_BASE = 'https://burger-back-production.up.railway.app';
@@ -31,6 +52,15 @@ const CATEGORIES = [
 ];
 
 export default function App() {
+  useEffect(() => {
+    // don’t block first paint; prefetch when the browser is idle
+    const run = () => preloadImages(ING_IMAGES);
+    if ("requestIdleCallback" in window) {
+      requestIdleCallback(run, { timeout: 2000 });
+    } else {
+      setTimeout(run, 0);
+    }
+  }, []);
   const [mode, setMode] = useState("home"); // 'home' | 'menu' | 'track'
   const [selectedCategory, setSelectedCategory] = useState("meals");
 
