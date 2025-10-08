@@ -4,9 +4,7 @@ import BurgerBuilder from "./BurgerBuilder";
 import MixMeal from "./MixMeal";
 
 // Use Netlify build-time env in production, localhost in dev
-const API_BASE =
-  import.meta.env.VITE_API_BASE ||
-  `${location.protocol}//${location.hostname}:5000`;
+const API_BASE = 'https://burger-back-production.up.railway.app';
 
 
 const CATEGORIES = [
