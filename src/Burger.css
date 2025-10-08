@@ -1,0 +1,119 @@
+/* ===== Modal shell (unchanged) ===== */
+.builder-modal{
+  position: fixed; inset: 0; background: rgba(0,0,0,.35);
+  display: grid; place-items: center; z-index: 999;
+}
+.builder-card{
+  width: min(900px, 92vw);
+  background: #fff; border: 2px solid #111; border-radius: 14px;
+  box-shadow: 0 18px 40px #00000033; padding: 1rem;
+}
+.builder-head{ display:flex; justify-content:space-between; align-items:center; }
+.builder-body{ display:grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media (max-width: 720px){ .builder-body{ grid-template-columns: 1fr; } }
+
+/* ===== Burger preview (clean baseline) ===== */
+.burger-preview {
+  position: relative;
+  width: 340px;
+  height: 370px;            /* optional: make a bit taller */
+  margin: 20px auto 0;      /* pushes it down a little */
+  background: #f9f7f2;
+  border: 1px dashed #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+
+/* ===== RESET any old conflicting rules ===== */
+.burger-layer{
+  position: absolute;
+  left: 50%;
+  bottom: 0;               /* anchor to bottom so stack grows upward */
+  transform: translateX(-50%);
+  max-width: none;         /* don't constrain by container max-width */
+  top: auto !important;    /* kill any previous 'top' */
+  right: auto;
+}
+
+/* ===== Per-layer size + vertical offset ===== */
+/* Tune 'width' + 'bottom' for each ingredient */
+.burger-layer.bun-bottom { width: 300px; bottom: -40px;    z-index: 10; }
+.burger-layer.patty      { width: 240px; bottom: 26px; z-index: 11; }
+.burger-layer.cheese     { width: 200px; bottom: 60px; z-index: 12; }
+.burger-layer.lettuce    { width: 200px; bottom: 66px; z-index: 13; }
+.burger-layer.tomato     { width: 150px; bottom: 96px; z-index: 14; }
+.burger-layer.onion      { width: 180px; bottom:100px; z-index: 15; }
+.burger-layer.bun-top    { width: 270px; bottom:92px; z-index: 16; }
+
+/* Controls (unchanged) */
+.builder-controls{ display:flex; flex-direction:column; gap:.4rem; }
+.check{
+  border:1px solid #ddd; padding:.55rem .7rem; border-radius:10px;
+  display:flex; align-items:center; gap:.6rem; background:#fff;
+}
+.check em{ color:#6b6b6b; font-style: normal; margin-inline-start:.2rem; }
+
+.builder-footer{
+  margin-top: .8rem; display:flex; align-items:center; justify-content:space-between;
+}
+.total{ font-size:1.05rem; }
+/* Make all text inside the builder readable on white background */
+.builder-card,
+.builder-card * {
+  color: #111 !important;   /* force dark text for all children */
+}
+
+/* Optional: style for labels and prices */
+.check span,
+.check em {
+  color: #111 !important;
+}
+
+.check input[type="checkbox"] {
+  accent-color: #111;       /* make the checkbox itself dark */
+}
+
+/* Buttons remain black text or white if primary */
+.btn,
+.btn small {
+  color: #111;
+}
+.btn.btn-primary {
+  color: #fff;
+}
+.builder-card {
+  background: #fffdf7; /* warmer white */
+}
+/* === Gold Buttons with White Text === */
+.btn {
+  border: none;
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 700;
+  background: #f2b705; /* gold */
+  color: #fff;         /* white text */
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* Smaller buttons for +/- or "סגור" */
+.btn.small {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+/* Optional: dark outline for contrast */
+.btn,
+.btn.small {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
