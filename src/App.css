@@ -1,0 +1,241 @@
+/* ===== Dark Burger Theme (RTL) ===== */
+:root {
+  --bg-1: #0e0e10;
+  --bg-2: #1a1a1d;
+  --card: #17171b;
+  --ink: #f5f5f5;
+  --muted: #9aa0a6;
+  --accent: #f2b705;       /* mustard highlight */
+  --danger: #e17055;       /* ketchup */
+  --danger-2: #ff8d72;
+  --edge: #2a2a2e;
+  --glow: 0 8px 40px rgba(0,0,0,.45);
+}
+
+/* Global Layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: "Rubik", "Assistant", "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 50% -10%, #222 0%, transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2));
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  direction: rtl;
+}
+
+/* Main app container */
+.container {
+  max-width: 920px;
+  width: min(92vw, 920px);
+  background: var(--card);
+  border: 1px solid var(--edge);
+  border-radius: 20px;
+  box-shadow: var(--glow);
+  padding: 1.5rem 1.5rem 2rem;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Decorative burger bar (top stripe) */
+.container::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 60px;
+  background:
+    linear-gradient(0deg, #0000 48%, #000 48% 52%, #0000 52%),
+    repeating-linear-gradient(90deg, #000 0 16px, #fff 16px 36px, #000 36px 52px, #fff 52px 68px);
+  mix-blend-mode: soft-light;
+  opacity: 0.7;
+  border-bottom: 1px solid #444;
+}
+h1, .toolbar { margin-top: 70px; }
+
+/* Typography */
+h1 {
+  font-size: 2rem;
+  margin: 0 0 1rem;
+  color: var(--ink);
+  letter-spacing: .5px;
+  text-align: right;
+}
+h2 {
+  margin: 0 0 .7rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+/* Toolbar & Buttons */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin-bottom: 1rem;
+}
+
+.btn {
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  padding: .6rem 1rem;
+  background: #1e1e22;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all .15s ease;
+}
+.btn:hover {
+  background: #26262c;
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+  background: #111;
+}
+
+/* Primary (golden) */
+.btn-primary {
+  background: linear-gradient(135deg, var(--accent), #f7d85d);
+  color: #222;
+  border-color: #5b4a12;
+  box-shadow: 0 6px 20px rgba(242,183,5,.25);
+}
+.btn-primary:hover {
+  box-shadow: 0 8px 26px rgba(242,183,5,.35);
+}
+
+/* Add (black key style) */
+.btn-add {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+  font-weight: 700;
+}
+.btn-add:hover {
+  background: #111;
+}
+
+/* Danger (remove) */
+.btn-danger {
+  background: linear-gradient(135deg, var(--danger), var(--danger-2));
+  color: #fff;
+  border-color: #7a2b1e;
+}
+.small {
+  padding: .3rem .6rem;
+  margin-inline-start: .6rem;
+}
+
+/* Cards */
+.card {
+  background: #1a1a1f;
+  border: 1px solid var(--edge);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.3);
+}
+.card-title {
+  margin: 0 0 .7rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Menu Items */
+.item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem 0;
+  border-bottom: 1px dashed #2e2e33;
+}
+.item-row:last-child { border-bottom: none; }
+.item-text { color: var(--ink); }
+
+/* Order List */
+.order-list {
+  list-style: none;
+  padding: 0;
+  margin: .2rem 0 0;
+}
+.order-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .35rem 0;
+}
+.total {
+  font-size: 1.1rem;
+  color: var(--muted);
+  margin: .5rem 0 1rem;
+}
+
+/* Inputs */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem;
+  margin: .6rem 0 1rem;
+}
+input {
+  flex: 1 1 200px;
+  padding: .65rem .75rem;
+  border: 1px solid var(--edge);
+  border-radius: 8px;
+  background: #111;
+  color: var(--ink);
+  outline: none;
+  transition: box-shadow .2s ease, transform .06s ease;
+}
+input:focus {
+  box-shadow: 0 0 0 2px rgba(242,183,5,.3);
+  transform: translateY(-1px);
+}
+
+/* Messages */
+.status { margin: .5rem 0; }
+.error { color: #ff5555; }
+
+/* Category grid (landing) */
+.cat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.cat-card {
+  border: 1px solid var(--edge);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #111;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--ink);
+  font-weight: 600;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.cat-card img {
+  width: 100%;
+  height: 70%;
+  object-fit: cover;
+}
+.cat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.4);
+}
+.cat-card-title {
+  padding: .5rem;
+  text-align: center;
+  background: #0008;
+  width: 100%;
+  color: var(--ink);
+}
