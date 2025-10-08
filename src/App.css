@@ -1,5 +1,6 @@
 /* ===== Dark Burger Theme (RTL) ===== */
 :root {
+  isolation: isolate;
   --bg-1: #0e0e10;
   --bg-2: #1a1a1d;
   --card: #17171b;
