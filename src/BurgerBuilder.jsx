@@ -14,19 +14,6 @@ const LAYERS = [
 
 export default function BurgerBuilder({ onClose, onAdd }) {
 
-  // 🔒 Lock background scroll on mount; restore on unmount (iOS-safe)
-    useEffect(() => {
-    const y = window.scrollY || 0;
-    document.body.classList.add("scroll-lock");
-    document.body.style.top = `-${y}px`;       // keep visual position
-
-    return () => {
-      const scrollY = Math.abs(parseInt(document.body.style.top || "0", 10));
-      document.body.classList.remove("scroll-lock");
-      document.body.style.top = "";
-      window.scrollTo(0, scrollY);             // restore position
-    };
-  }, []);
   // Always show bun-bottom and one patty
   const initial = LAYERS.reduce((acc, l) => {
     if (l.id === "bun-bottom" || l.id === "patty") return { ...acc, [l.id]: true };
@@ -178,5 +165,6 @@ export default function BurgerBuilder({ onClose, onAdd }) {
     </div>
   );
 }
+
 
 
